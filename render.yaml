@@ -5,6 +5,10 @@ services:
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     headers:
+      # Sequence PNGs are immutable filenames — cache hard so repeat visits do not re-hit origin.
+      - path: /assets/seq/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
       - path: /*
         name: Cache-Control
         value: no-cache
