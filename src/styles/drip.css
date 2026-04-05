@@ -1,0 +1,355 @@
+/* App layout: Navbar fixed at top; main is the scroll container so content below DRIP is visible */
+.app-layout {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.phone-block-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 24px;
+  text-align: center;
+}
+
+.phone-block-content h1 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 6vw, 32px);
+  line-height: 1.2;
+  color: #111827;
+}
+
+.phone-block-content p {
+  margin: 0;
+  font-size: clamp(14px, 3.8vw, 16px);
+  color: #4b5563;
+}
+
+.main-content {
+  margin-top: 100px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1081px) {
+  .main-content {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+  }
+}
+
+/* DRIP landing – exact replica styles */
+
+.DRIP-page body,
+.DRIP-page html {
+  overflow-x: hidden;
+}
+
+.DRIP-page .DRIP-section-panel {
+  z-index: 1;
+  position: relative;
+  height: 100vh;
+  padding-top: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.DRIP-page .DRIP-section-panel p {
+  font-weight: 600;
+}
+
+/* Full-page scroll: sequence block + footer in document flow; canvas stays fixed */
+.DRIP-landing-sequence-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* All scrollable content (sequence + footer) above the fixed canvas so footer is visible after last frame */
+.DRIP-sequence-content-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.DRIP-sequence-block {
+  position: relative;
+}
+
+/* Content below the DRIP (DummySection, App footer) must sit above the fixed canvas when scrolled into view */
+.DRIP-below-content {
+  position: relative;
+  z-index: 1;
+}
+
+.DRIP-canvas-container {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  overflow: hidden;
+  /* White background so it blends with sequence frames */
+  background-color: #fff;
+  pointer-events: none;
+}
+
+@media (max-width: 1081px) {
+  .DRIP-canvas-container {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+}
+
+
+.DRIP-canvas-container canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.DRIP-scroll-content {
+  min-height: 1100vh; /* 11 sections */
+}
+
+.DRIP-section-content {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.DRIP-box {
+  width: 100%;
+  height: 100%;
+}
+
+.DRIP-wrapper {
+  padding-left: 10vw;
+  padding-top: 10vh;
+  text-align: left;
+}
+
+/* Section 0 – left-aligned from edge */
+.DRIP-section-0.DRIP-section-panel { justify-content: flex-start; align-items: flex-start; }
+.DRIP-section-0 .DRIP-section-content { justify-content: flex-start; align-items: flex-start; width: 100%; }
+.DRIP-section-0 .DRIP-box { width: 100%; padding-left: 2vw; padding-right: 2vw; box-sizing: border-box; }
+.DRIP-section-0 .DRIP-wrapper {
+  padding-left: 0;
+  padding-top: 10vh;
+  text-align: left;
+}
+
+.DRIP-section-0 h1 { font-size: 5.5vw; }
+.DRIP-section-0 h2 { font-size: 3.5vw; line-height: 2.5vw; }
+
+.DRIP-scroll-down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: white !important;
+  position: absolute;
+  bottom: 8lh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Ensure each section takes full viewport so only one is visible at a time */
+.DRIP-scroll-content .DRIP-section-panel {
+  min-height: 100vh;
+  height: 100vh;
+}
+
+@media (max-width: 1081px) {
+  .DRIP-scroll-down { bottom: 15lh; }
+}
+
+/* Section 1 – left-aligned from edge */
+.DRIP-section-1 .DRIP-section-content { justify-content: flex-start; align-items: flex-start; }
+.DRIP-section-1 .DRIP-box { width: 100%; max-width: 60vw; padding-left: 2vw; padding-right: 2vw; padding-top: 5vw; box-sizing: border-box; }
+.DRIP-section-1 .DRIP-wrapper { padding-left: 0; text-align: left; }
+.DRIP-section-1 h1 { font-size: 5.5vw; }
+.DRIP-section-1 h2 { font-size: 3.5vw; }
+
+/* Sections 2–5 two-column layout: left content flush left, right content flush right */
+.DRIP-section-2 .DRIP-box,
+.DRIP-section-3 .DRIP-box,
+.DRIP-section-4 .DRIP-box,
+.DRIP-section-5 .DRIP-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  box-sizing: border-box;
+}
+
+/* Left column: always left-aligned, flush left, structured */
+.DRIP-section-2 .DRIP-wrapper:first-child,
+.DRIP-section-3 .DRIP-wrapper:first-child,
+.DRIP-section-4 .DRIP-wrapper:first-child,
+.DRIP-section-5 .DRIP-wrapper:first-child {
+  text-align: left;
+  width: 29vw;
+  min-width: 200px;
+  padding-left: 0 !important;
+  padding-right: 1rem;
+  margin-left: 0;
+}
+
+.DRIP-section-2 .DRIP-wrapper:last-child,
+.DRIP-section-3 .DRIP-wrapper:last-child,
+.DRIP-section-4 .DRIP-wrapper:last-child,
+.DRIP-section-5 .DRIP-wrapper:last-child {
+  text-align: left;
+  width: 28vw;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.DRIP-section-2 h1, .DRIP-section-3 h1, .DRIP-section-4 h1, .DRIP-section-5 h1 { font-size: 5.5vw; }
+.DRIP-section-2 h2, .DRIP-section-3 h2, .DRIP-section-4 h2, .DRIP-section-5 h2 { font-size: 3.5vw; }
+
+/* Section 6 & 7 */
+.DRIP-section-6 .DRIP-box { padding-top: 5vw; padding-right: 5vw; justify-content: flex-end; align-items: flex-start; }
+.DRIP-section-6 .DRIP-wrapper { text-align: right; }
+.DRIP-section-6 h1, .DRIP-section-7 h1 { font-size: 5.5vw; }
+.DRIP-section-6 h2, .DRIP-section-7 h2 { font-size: 3.5vw; }
+.DRIP-section-7 .DRIP-wrapper { text-align: right; width: 18vw; }
+.DRIP-section-7 .DRIP-box { display: flex; align-items: center; justify-content: space-between; width: 95vw; }
+.DRIP-section-7 h1 { line-height: 5.7vw; margin-top: 25px; }
+.DRIP-section-7 h2 { line-height: 3.7vw; }
+
+/* Sections 8–10 now use dark text to match white background */
+.DRIP-section-8.DRIP-white,
+.DRIP-section-9.DRIP-white,
+.DRIP-section-10.DRIP-white { color: #000; }
+
+.DRIP-section-8 .DRIP-box,
+.DRIP-section-9 .DRIP-box { display: flex; align-items: center; justify-content: space-between; width: 100vw; padding-left: 2vw; padding-right: 2vw; box-sizing: border-box; }
+/* Left column: left-aligned, flush left */
+.DRIP-section-8 .DRIP-wrapper:first-child { text-align: left; width: 18vw; min-width: 180px; margin-left: 0; padding-left: 0 !important; }
+.DRIP-section-8 .DRIP-wrapper:last-child { text-align: left; width: 30vw; margin-right: 0; }
+.DRIP-section-8 h1, .DRIP-section-9 h1 { font-size: 5.5vw; line-height: 5.7vw; margin-top: 25px; }
+.DRIP-section-8 h2, .DRIP-section-9 h2 { font-size: 3.5vw; line-height: 3.7vw; }
+.DRIP-section-9 .DRIP-wrapper:first-child { text-align: left; width: 24vw; min-width: 180px; margin-left: 0; padding-left: 0 !important; }
+.DRIP-section-9 .DRIP-wrapper:last-child { text-align: left; width: 25vw; margin-right: 0; }
+
+.DRIP-section-10 .DRIP-box { width: 100vw; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.DRIP-section-10 .DRIP-wrapper.center { display: flex; text-align: center; flex-direction: column; align-items: center; }
+.DRIP-section-10 h2 { font-size: 56px; font-weight: 500; letter-spacing: -1px; margin-bottom: 25px; }
+.DRIP-section-10 .DRIP-button { color: #000 !important; }
+
+.DRIP-button {
+  border-radius: 90px;
+  border: 1px solid #e5e7eb;
+  display: inline-flex;
+  padding: 8px 15px 7px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 150%;
+  text-decoration: none;
+  width: 120px;
+  pointer-events: auto;
+}
+
+.DRIP-button img { width: 15px; pointer-events: none; }
+
+/* Footer */
+.DRIP-footer { color: #9ca3af; font-size: 14px; display: flex; flex-direction: column; background: #000; padding-top: 40px; }
+.DRIP-footer .DRIP-footer-info { font-size: 14px; margin-top: 50px; }
+.DRIP-footer p { font-size: 16px; font-weight: 400; line-height: 140%; padding: 20px 0; }
+.DRIP-footer b { color: #fff !important; text-transform: uppercase; }
+.DRIP-footer a { padding: 0 0 15px; pointer-events: auto; }
+.DRIP-footer a:hover { color: #fff; }
+.DRIP-footer .DRIP-logo { width: 70px; }
+.DRIP-footer .DRIP-column { width: 33%; padding: 0 30px; box-sizing: border-box; }
+
+.DRIP-scroll-to-bottom {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.DRIP-scroll-to-bottom.is-hidden { opacity: 0; pointer-events: none; }
+.DRIP-scroll-to-bottom img { height: 48px; }
+@media (max-width: 1081px) { .DRIP-scroll-to-bottom img { height: 40px; } }
+
+/* Typography base */
+.DRIP-page .DRIP-section-panel h1 { font-size: 120px; font-weight: 900; letter-spacing: -1px; margin: 0; padding: 0; }
+.DRIP-page .DRIP-section-panel h2 { font-size: 76px; font-weight: 400; letter-spacing: -1px; margin: 0; padding: 0; }
+.DRIP-page .DRIP-section-panel p { margin: 0; padding: 0; font-size: clamp(16px, 1.3vw, 1.4rem); }
+
+/* Mobile overrides */
+@media (max-width: 1081px) {
+  .DRIP-section-0 h1 { font-size: 9.5vw; }
+  .DRIP-section-0 h2 { font-size: 6.5vw; }
+  .DRIP-section-0 .DRIP-wrapper { padding: 0; text-align: center; }
+  .DRIP-section-0 .DRIP-box { padding: 0; text-align: center; }
+  .DRIP-section-1 .DRIP-box { width: 80vw; padding: 0; padding-top: 5vh; }
+  .DRIP-section-1 h1 { font-size: 9.5vw; }
+  .DRIP-section-1 h2 { font-size: 6.5vw; }
+  .DRIP-section-1 .DRIP-wrapper { text-align: center; }
+  .DRIP-section-2 .DRIP-box,
+  .DRIP-section-5 .DRIP-box { flex-direction: column; gap: 5vh; padding: 0 5vh 15lh; width: 80vw; }
+  .DRIP-section-2 .DRIP-wrapper:first-child,
+  .DRIP-section-2 .DRIP-wrapper:last-child,
+  .DRIP-section-5 .DRIP-wrapper:first-child,
+  .DRIP-section-5 .DRIP-wrapper:last-child { width: 100%; text-align: center; margin-right: 0; }
+  .DRIP-section-2 h1, .DRIP-section-5 h1 { font-size: 9.5vw; }
+  .DRIP-section-2 h2, .DRIP-section-5 h2 { font-size: 6.5vw; }
+  .DRIP-section-2 p, .DRIP-section-5 p { font-size: 14px; text-align: center; }
+  .DRIP-section-3 .DRIP-box { width: 58vw; padding: 0; padding-top: 10vh; }
+  .DRIP-section-3 .DRIP-wrapper:first-child { display: none; }
+  .DRIP-section-3 .DRIP-wrapper:last-child { width: 100%; margin-right: 0; text-align: center; }
+  .DRIP-section-3 h1, .DRIP-section-3 h2 { font-size: 9.5vw; font-size: 6.5vw; }
+  .DRIP-section-3 p { font-size: 14px; text-align: center; }
+  .DRIP-section-4 .DRIP-box { flex-direction: column; gap: 5vh; padding: 0; padding-top: 5vw; }
+  .DRIP-section-4 .DRIP-wrapper:first-child,
+  .DRIP-section-4 .DRIP-wrapper:last-child { width: 50vw; text-align: center; }
+  .DRIP-section-4 h1, .DRIP-section-4 h2 { font-size: 9.5vw; font-size: 6.5vw; }
+  .DRIP-section-6 .DRIP-box,
+  .DRIP-section-7 .DRIP-box { width: 80vw; flex-direction: column; gap: 10vh; padding: 0; padding-top: 10vh; }
+  .DRIP-section-6 .DRIP-wrapper,
+  .DRIP-section-7 .DRIP-wrapper { width: 100%; text-align: center; }
+  .DRIP-section-6 h1, .DRIP-section-7 h1 { font-size: 9.5vw; }
+  .DRIP-section-6 h2, .DRIP-section-7 h2 { font-size: 6.5vw; }
+  .DRIP-section-8 .DRIP-box,
+  .DRIP-section-9 .DRIP-box { width: 80vw; flex-direction: column; gap: 10vh; padding: 0; padding-top: 10vh; }
+  .DRIP-section-8 .DRIP-wrapper:first-child,
+  .DRIP-section-8 .DRIP-wrapper:last-child,
+  .DRIP-section-9 .DRIP-wrapper:first-child,
+  .DRIP-section-9 .DRIP-wrapper:last-child { width: 100%; text-align: center; margin: 0; }
+  .DRIP-section-8 h1, .DRIP-section-9 h1 { font-size: 9.5vw; }
+  .DRIP-section-8 h2, .DRIP-section-9 h2 { font-size: 6.5vw; }
+  .DRIP-section-10 h2 { font-size: 9vw; line-height: 11vw; text-align: center; }
+  .DRIP-footer .DRIP-column:nth-child(2),
+  .DRIP-footer .DRIP-column:nth-child(3) { display: none; }
+  .DRIP-footer .DRIP-column:first-child { width: 100%; }
+}

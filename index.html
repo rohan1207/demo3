@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8RKDFTHRWM"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-8RKDFTHRWM");
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#7FAF73" />
+
+    <title>T-REX — Premium tumblers &amp; everyday carry</title>
+    <meta
+      name="description"
+      content="Premium stainless steel tumblers built for motion, routine, and presence. Shop T-rex for insulated drinkware, secure checkout, and careful dispatch across India."
+    />
+    <meta
+      name="keywords"
+      content="T-rex, premium tumbler, insulated bottle, stainless steel tumbler, 1 litre tumbler, everyday carry, drinkware India, thermal flask, sage green tumbler, blush pink tumbler"
+    />
+    <meta name="author" content="T-rex" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph — set og:url and image to your full production URL when you deploy -->
+    <meta property="og:title" content="T-rex — Premium tumblers &amp; everyday carry" />
+    <meta
+      property="og:description"
+      content="Everyday carry, elevated. Premium tumblers with clean design, durable build, and thermal performance you can trust."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="T-rex" />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="T-rex — Premium tumblers &amp; everyday carry" />
+    <meta
+      name="twitter:description"
+      content="Premium stainless steel tumblers for work, travel, and daily use. Shop the collection."
+    />
+    <meta name="twitter:image" content="/logo.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        const redirect = sessionStorage.getItem("redirect");
+        if (redirect) {
+          sessionStorage.removeItem("redirect");
+          if (redirect !== location.pathname) {
+            history.replaceState(null, null, redirect);
+          }
+        }
+      })();
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "OnlineStore",
+        "name": "T-rex",
+        "description": "T-rex sells premium stainless steel tumblers and insulated drinkware designed for everyday carry—clean silhouettes, durable construction, and reliable thermal performance.",
+        "url": "/",
+        "logo": "/logo.png",
+        "image": "/logo.png",
+        "areaServed": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "currenciesAccepted": "INR",
+        "paymentAccepted": "Razorpay, Debit Card, Credit Card, UPI",
+        "knowsAbout": [
+          "Insulated tumblers",
+          "Stainless steel drinkware",
+          "Everyday carry",
+          "Thermal bottles"
+        ]
+      }
+    </script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
