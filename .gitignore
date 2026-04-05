@@ -10,9 +10,6 @@ coverage
 build
 dist
 
-# Scroll sequence frames — large; use VITE_SEQUENCE_BASE + CDN on Render (do not commit).
-public/assets/seq/
-
 # Misc
 .DS_Store
 .env

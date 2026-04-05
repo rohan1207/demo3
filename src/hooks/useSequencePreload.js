@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 
 /**
- * Optional absolute base for sequence PNGs when they are not in the deployed bundle
- * (e.g. `public/assets/seq/` gitignored — host the same folder layout on R2/S3/CDN).
- * Render: add `VITE_SEQUENCE_BASE=https://your-cdn.example.com` (no trailing slash) and rebuild.
+ * Optional base URL for sequence PNGs. Leave unset to load from the same host as the app
+ * (`/assets/seq/...` from `public/` — normal for Render: no separate CDN).
+ * Set `VITE_SEQUENCE_BASE` only if frames are hosted elsewhere (same path layout under /assets/seq/).
  */
 const SEQUENCE_BASE = (import.meta.env.VITE_SEQUENCE_BASE || '').replace(/\/$/, '');
 
